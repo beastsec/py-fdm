@@ -18,3 +18,5 @@
 Python flow download manager is a powerfull download manager written on python3.
 
 ## Requeriments
+
+- requests
