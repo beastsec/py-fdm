@@ -28,6 +28,9 @@ class Handler:
                 for chunk in getting_file.iter_content(chunk_size=1024):
                     if chunk: output_file.write(chunk)
     def threads_download(self, max_threads = 4):
+        """
+        Perform a multi-part file download using threads.
+        """
         s = requests.Session()
         file_size = int(s.head(self.url).headers['content-length'])
         with open(self.filename, 'wb') as create_dummy:
