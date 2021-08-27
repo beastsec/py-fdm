@@ -11,15 +11,18 @@ class Handler:
         """
         check the accepted headers.
         """
-        _r = requests.head(self.url)
-        return(_r.headers)
+        r = requests.head(self.url)
+        return(r.headers)
         
     def simple_download(self):
         """
-        Downloads the file specified in the URL by data streaming to be stored.
+        Reserve file size on disk and then download the file and fill that reserved space.
         """
-        _s = requests.Session()
-        with open(self.filename, 'wb') as _output_file:
-            with _s.get(self.url, stream=True) as _getting_file:
-                for _chunk in _getting_file.iter_content(chunk_size=1024):
-                    if _chunk: _output_file.write(_chunk)
+        s = requests.Session()
+        with open(self.filename, 'wb') as output_file:
+            with s.get(self.url, stream=True) as getting_file:
+                file_size = int(getting_file.headers['content-length'])
+                output_file.write(b'\x00' * file_size)
+                output_file.seek(0, 0)
+                for chunk in getting_file.iter_content(chunk_size=1024):
+                    if chunk: output_file.write(chunk)
