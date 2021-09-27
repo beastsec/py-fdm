@@ -2,6 +2,7 @@
 #-*- coding: utf-8 -*-
 import threading
 import requests
+import json
 
 class Handler:
     def __init__(self, url):
@@ -13,7 +14,7 @@ class Handler:
         check the accepted headers.
         """
         r = requests.head(self.url)
-        return(r.headers)
+        return json.dumps(dict(r.headers))
         
     def download_file(self):
         """
