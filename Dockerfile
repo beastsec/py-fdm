@@ -2,9 +2,14 @@
 FROM ubuntu:latest
 
 # Labels.
+LABEL authors="Gabriel Romero, Deiby Gerez"
 LABEL maintainer="gabrielromero0499@gmail.com"
 LABEL description="Donwload Manager Writted On Python3, This project is in the development phase."
 LABEL version="0.1"
+
+# Set vars.
+ARG USER=fdm-data
+ARG HOME=/opt/py-fdm
 
 # Set env.
 ENV DEBIAN_FRONTEND noninteractive
@@ -24,13 +29,25 @@ RUN apt -qq update && apt full-upgrade -y && apt install -y --no-install-recomme
 RUN echo "en_US.UTF-8 UTF-8" | tee -a /etc/locale.gen
 RUN locale-gen en_US.UTF-8 && dpkg-reconfigure locales
 
+# Set non-root User.
+RUN groupadd -g 1000 ${USER}
+RUN useradd -d ${HOME}} -s /bin/bash -m ${USER} -u 1000 -g 1000
+USER ${USER}
+ENV HOME ${HOME}
+
+# Set fdm-data owner of /opt/py-fdm .
+RUN chown ${USER}:${USER} ${HOME}
+
 # Install default packages.
 RUN apt install -y --no-install-recommends \
     python3 \
     python3-pip
 
+# Set user.
+USER ${USER}
+
 # Set workdir.
-WORKDIR /opt/py-fdm
+WORKDIR ${HOME}/py-fdm
 
 # Add files.
 COPY . .
