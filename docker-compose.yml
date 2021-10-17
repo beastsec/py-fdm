@@ -1,0 +1,11 @@
+version: "3.8"
+services:
+    honeypot:
+        build: .
+        image: "py-fdm:latest"
+        privileged: True
+        volumes:
+            - "/home/saikotwolf/Downloads:/opt/py-fdm/downloads"
+            
+        ports:
+            - "5000:5000"
