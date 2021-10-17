@@ -21,5 +21,5 @@ Python flow download manager is a powerfull download manager written on python3.
 
 You need [pip3](https://docs.python.org/3/installing/index.html) to install this packages.
 
-- threading
 - requests
+- flask
