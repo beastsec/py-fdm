@@ -1,0 +1,10 @@
+docker-compose.yml
+.dockerignore
+downloads/*
+downloads/
+Dockerfile
+.gitignore
+postman/*
+postman/
+README.md
+LICENSE
