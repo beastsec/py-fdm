@@ -2,6 +2,7 @@
 #-*- coding: utf-8 -*-
 import threading
 import requests
+import os
 
 class Http:
     def __init__(self):
@@ -33,9 +34,10 @@ class Http:
         Reserve file size on disk and then download the file and fill that reserved space.
         """
         fname = url.split("/")[-1]
+        if not os.path.exists("/opt/py-fdm/downloads"): os.makedirs("/opt/py-fdm/downloads")
         if threads == True: self.headers['Range'] = f'bytes={start}-{end}'
         s = requests.Session()
-        with open(fname, 'w+b') as ofile:
+        with open("/opt/py-fdm/downloads/" + fname, 'w+b') as ofile:
             with s.get(url, headers=self.headers, timeout=30, stream=True) as gfile:
                 fsize = int(gfile.headers['content-length'])
                 ofile.write(b'\x00' * fsize)
