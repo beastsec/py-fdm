@@ -1,0 +1,48 @@
+*{
+    padding: 0%;
+    margin: 0%;
+    color: rgba(0, 0, 0, 0.7);
+}
+
+body{
+    background: rgb(228, 225, 225);;
+}
+.container-login{
+    justify-content: center;
+    display: flex;
+    background-color: rgb(228, 225, 225);
+    width: 100%;
+    height: 100%;
+}
+article{
+    background-color: #fff;
+    margin: 10%;
+    padding: 5%;
+    
+}
+#password, .view{
+    display: inline;
+}
+.error-message, h4{
+    margin-bottom: 10%;
+}
+#error-user, #error-password{
+    color: rgb(243, 78, 78);
+    display: none;
+}
+.forgot{
+    display: block;
+    text-align: right;
+}
+.forgot:hover, .btn:hover{
+    color: #FCD143;
+
+}
+
+.form-control:focus{
+    color:#212529;
+    background-color:#fff;
+    border-color:#FCD143;
+    outline:0;
+    box-shadow:0 0 0 .25rem rgba(252, 209, 67, 0.25);
+}
