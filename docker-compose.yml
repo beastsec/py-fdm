@@ -1,6 +1,6 @@
 version: "3.8"
 services:
-    honeypot:
+    py-fdm:
         build: .
         image: "py-fdm:latest"
         privileged: True
