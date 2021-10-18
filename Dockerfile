@@ -7,10 +7,6 @@ LABEL maintainer="gabrielromero0499@gmail.com"
 LABEL description="Donwload Manager Writted On Python3, This project is in the development phase."
 LABEL version="0.1"
 
-# Set vars.
-ARG USER=fdm-data
-ARG HOME=/opt/py-fdm
-
 # Set env.
 ENV DEBIAN_FRONTEND noninteractive
 ENV TZ=America/Santo_Domingo
@@ -23,40 +19,34 @@ ENV LANG=en_US.UTF-8
 RUN apt -qq update && apt full-upgrade -y && apt install -y --no-install-recommends \
     apt-utils \
     dialog \
-    locales
+    locales \
+    python3 \
+    python3-pip
 
 # Reconfigure locale.
 RUN echo "en_US.UTF-8 UTF-8" | tee -a /etc/locale.gen
 RUN locale-gen en_US.UTF-8 && dpkg-reconfigure locales
 
-# Set non-root User.
-RUN groupadd -g 1000 ${USER}
-RUN useradd -d ${HOME}} -s /bin/bash -m ${USER} -u 1000 -g 1000
-USER ${USER}
-ENV HOME ${HOME}
-
-# Set fdm-data owner of /opt/py-fdm .
-RUN chown ${USER}:${USER} ${HOME}
-
-# Install default packages.
-RUN apt install -y --no-install-recommends \
-    python3 \
-    python3-pip
-
-# Set user.
-USER ${USER}
-
 # Set workdir.
-WORKDIR ${HOME}/py-fdm
+WORKDIR /opt/py-fdm
+
+# Set non-root User.
+RUN groupadd -g 1000 fdm-data
+RUN useradd -d /home/fdm-data -s /bin/bash -m fdm-data -u 1000 -g 1000
 
 # Add files.
-COPY . .
+COPY --chown=fdm-data:fdm-data . .
 
-# Install python libs.
-RUN pip3 install -r requirements.txt && rm -rf requirements.txt
+RUN chown -R fdm-data:fdm-data /opt/py-fdm
 
 # Expose flask port.
 EXPOSE 5000
 
-# Run honeypot api service.
+# Set user.
+USER fdm-data
+
+# Install python libs.
+RUN pip3 install -r requirements.txt && rm -rf requirements.txt
+
+# Run py-fdm service.
 CMD [ "python3", "src/py-fdm/app.py" ]

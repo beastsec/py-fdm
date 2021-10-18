@@ -5,7 +5,7 @@ services:
         image: "py-fdm:latest"
         privileged: True
         volumes:
-            - "${HOME}/Downloads:/opt/py-fdm/downloads"
+            - "/home/saikotwolf/Downloads:/opt/py-fdm/downloads"
             
         ports:
             - "5000:5000"
