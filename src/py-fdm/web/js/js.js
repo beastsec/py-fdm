@@ -1,4 +1,6 @@
-
+/**
+ * Verify if input creds have or not content.
+ */
 function CredsVerify(){
     const usernme = document.getElementById('username');
     const password = document.getElementById('password');
@@ -19,6 +21,7 @@ function CredsVerify(){
         pass_error.style.display = 'none';
     }
 }
-
 const login = document.getElementById('login');
 login.addEventListener('click',CredsVerify);
+
+

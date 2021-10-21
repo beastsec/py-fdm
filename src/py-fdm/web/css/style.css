@@ -10,35 +10,56 @@ body{
 .container-login{
     justify-content: center;
     display: flex;
+    align-content: center;
+    padding: 5rem;
+    padding-bottom: auto;
     background-color: rgb(228, 225, 225);
     width: 100%;
     height: 100%;
 }
 article{
-    background-color: #fff;
-    margin: 10%;
+    background-color: #fff; 
     padding: 5%;
     
 }
-#password, .view{
+
+.inline{
     display: inline;
 }
-.error-message, h4{
+.inline-block{
+    display: inline-block;
+}
+.margin-bottom-10{
     margin-bottom: 10%;
 }
-#error-user, #error-password{
+
+.error-message{
     color: rgb(243, 78, 78);
     display: none;
 }
-.forgot{
+.forgot-container{
     display: block;
     text-align: right;
 }
-.forgot:hover, .btn:hover{
+.forgot-text{
+    padding: 2px;
+    cursor: pointer;
+}
+.forgot-text:hover{
     color: #FCD143;
-
+}
+.btn-dark:hover{
+    background-color: #FCD143;
+    border-color: #FCD143;
+    color: #000;
 }
 
+.btn-dark:focus{
+    color:#000;
+    background-color:#ffca2c;
+    border-color:#ffc720;
+    box-shadow:0 0 0 .25rem rgba(217,164,6,.5)
+}
 .form-control:focus{
     color:#212529;
     background-color:#fff;

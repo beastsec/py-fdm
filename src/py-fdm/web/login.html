@@ -15,19 +15,21 @@
 
         </section>
         <article class="rounded">
-            <h4>PY-fdm Login</h4>
+            <h4 class="margin-bottom-10">PY-fdm Login</h4>
             <form action="">
                 <label style="display: block;" for="username">Username</label>
                 <input type="text" name="username" class="form-control" id="username">
-                <div class="error-message">
-                    <span id="error-user">Username is required</span>
+                <div class="margin-bottom-10">
+                    <span id="error-user" class="error-message">Username is required</span>
                 </div>
                 <label style="display: block;" for="password">Password</label>
                 <input type="password" name="password" class="form-control" id="password">
-                <div class="error-message">
-                    <span id="error-password">Password is required</span>
+                <div class="margin-bottom-10">
+                    <span id="error-password" class="error-message">Password is required</span>
                 </div>
-                <span class="forgot">Forgot Password?</span>
+                <span class="forgot-container">
+                    <span class="inline-block forgot-text">Forgot Password?</span>
+                </span>
                 <button type="button" class="btn btn-dark" id="login">Login</button>
             </form>
         </article>
