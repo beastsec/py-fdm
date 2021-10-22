@@ -1,7 +1,7 @@
 /**
  * Verify if input creds have or not content.
  */
-function CredsVerify(){
+function CredsValueVerify(){
     const usernme = document.getElementById('username');
     const password = document.getElementById('password');
     const user_error = document.getElementById('error-user');
